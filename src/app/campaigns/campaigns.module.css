@@ -1,0 +1,74 @@
+@import '@/styles/variables.css';
+
+.main {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-8) var(--space-6);
+}
+
+.header {
+  margin-bottom: var(--space-8);
+}
+
+.heading {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+}
+
+.subheading {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.skeleton {
+  height: 220px;
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 0%,
+    var(--color-gray-100) 50%,
+    var(--color-gray-200) 100%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-lg);
+  animation: shimmer 1.4s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.loadingGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-6);
+}
+
+.emptyState,
+.errorState {
+  padding: var(--space-16) 0;
+  text-align: center;
+}
+
+.emptyText {
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+}
+
+.errorText {
+  font-size: var(--text-base);
+  color: var(--color-error);
+  background-color: var(--color-error-light);
+  display: inline-block;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+}
