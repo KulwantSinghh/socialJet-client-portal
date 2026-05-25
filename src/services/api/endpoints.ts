@@ -30,4 +30,12 @@ export const ENDPOINTS = {
   // ─── Progress ────────────────────────────────────────────────
   CAMPAIGN_PROGRESS: (campaignId: string) =>
     `${BASE}/client/campaigns/${campaignId}/progress`,
+
+  // ─── Dashboard ───────────────────────────────────────────────
+  OVERVIEW: `${BASE}/client/overview`,
+  PROPOSALS: `${BASE}/client/proposals`,
+  ONBOARDING_DOCUMENTS: `${BASE}/client/onboarding-document`,
+  INFLUENCERS: `${BASE}/client/influencers`,
+  INFLUENCER_UPDATE: (creatorId: string) => `${BASE}/client/influencers/${creatorId}`,
+  SELECTED_CREATORS: `${BASE}/client/creators`,
 } as const;

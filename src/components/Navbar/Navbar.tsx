@@ -18,12 +18,44 @@ export function Navbar() {
   return (
     <header className={styles.header}>
       <nav className={styles.nav}>
-        <Link href="/campaigns" className={styles.brand}>
+        <Link href="/dashboard" className={styles.brand}>
           <span className={styles.brandMark}>SJ</span>
           <span className={styles.brandName}>Client Portal</span>
         </Link>
 
         <ul className={styles.links}>
+          <li>
+            <Link
+              href="/dashboard"
+              className={`${styles.link} ${pathname === '/dashboard' ? styles.linkActive : ''}`}
+            >
+              Dashboard
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard/proposals"
+              className={`${styles.link} ${pathname.startsWith('/dashboard/proposals') ? styles.linkActive : ''}`}
+            >
+              Proposals
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard/onboarding"
+              className={`${styles.link} ${pathname.startsWith('/dashboard/onboarding') ? styles.linkActive : ''}`}
+            >
+              Onboarding
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard/influencers"
+              className={`${styles.link} ${pathname.startsWith('/dashboard/influencers') ? styles.linkActive : ''}`}
+            >
+              Influencers
+            </Link>
+          </li>
           <li>
             <Link
               href="/campaigns"

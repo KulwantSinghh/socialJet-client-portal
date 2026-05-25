@@ -11,15 +11,16 @@ interface AuthGuardProps {
 
 export function AuthGuard({ children }: AuthGuardProps) {
   const token = useAuthStore((s) => s.access_token);
+  const hasHydrated = useAuthStore((s) => s._hasHydrated);
   const router = useRouter();
 
   useEffect(() => {
-    if (!token) {
+    if (hasHydrated && !token) {
       router.replace('/login');
     }
-  }, [token, router]);
+  }, [token, hasHydrated, router]);
 
-  if (!token) {
+  if (!hasHydrated || !token) {
     return (
       <div className={styles.loading}>
         <span className={styles.spinner} />
