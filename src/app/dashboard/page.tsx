@@ -39,7 +39,8 @@ function statusBadge(status: string) {
   return `${styles.badge} ${map[status] ?? styles.badgeGray}`;
 }
 
-function statusLabel(status: string) {
+function statusLabel(status: string | null) {
+  if (!status) return '—';
   return status.replace(/_/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
