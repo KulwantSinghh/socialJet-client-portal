@@ -1,4 +1,5 @@
 export interface OverviewLead {
+  lead_id?: string;
   name: string;
   company: string;
   email: string;
@@ -39,6 +40,7 @@ export interface OverviewCampaign {
 }
 
 export interface OverviewResponse {
+  lead_id?: string;
   lead: OverviewLead;
   meetings: OverviewMeeting[];
   proposals: OverviewProposal[];
@@ -182,6 +184,62 @@ export interface OnboardingDocumentsResponse {
 
 // ── Influencers ──────────────────────────────────────────────────────────
 
+export interface InstagramPostMusic {
+  artist_name: string;
+  song_name: string;
+  uses_original_audio: boolean;
+  audio_id: string;
+}
+
+export interface InstagramCarouselItem {
+  position: number;
+  id: string;
+  type: string;
+  link: string;
+  width: number;
+  height: number;
+}
+
+export interface InstagramPost {
+  position: number;
+  id: string;
+  permalink: string;
+  type: 'reel' | 'carousel' | 'image' | string;
+  link: string;
+  width: number;
+  height: number;
+  views?: number;
+  has_audio?: boolean;
+  caption?: string;
+  likes?: number;
+  comments?: number;
+  iso_date?: string;
+  music?: InstagramPostMusic;
+  carousel_items?: InstagramCarouselItem[];
+  thumbnail?: string;
+}
+
+export interface InstagramSearchProfile {
+  username: string;
+  name: string;
+  bio: string;
+  avatar: string;
+  avatar_hd: string;
+  is_verified: boolean;
+  is_business: boolean;
+  posts: number;
+  followers: number;
+  following: number;
+  category: string;
+}
+
+export interface SearchApiData {
+  instagram?: {
+    profile?: InstagramSearchProfile;
+    posts?: InstagramPost[];
+  };
+}
+
 export interface InfluencerProfile {
   creator_id: string;
   name: string;
@@ -196,30 +254,33 @@ export interface InfluencerProfile {
   profile_image: string;
   rate: string;
   instagram_handle: string;
-  instagram_followers: number;
-  instagram_following: number;
-  instagram_posts: number;
-  instagram_engagement_rate: number;
-  instagram_avg_likes: number;
-  instagram_avg_comments: number;
+  instagram_followers: number | null;
+  instagram_following: number | null;
+  instagram_posts: number | null;
+  instagram_engagement_rate: number | null;
+  instagram_avg_likes: number | null;
+  instagram_avg_comments: number | null;
   instagram_url: string;
   tiktok_handle: string;
-  tiktok_followers: number;
-  tiktok_following: number;
-  tiktok_videos: number;
-  tiktok_likes: number;
-  tiktok_engagement_rate: number;
-  tiktok_avg_views: number;
+  tiktok_followers: number | null;
+  tiktok_following: number | null;
+  tiktok_videos: number | null;
+  tiktok_likes: number | null;
+  tiktok_engagement_rate: number | null;
+  tiktok_avg_views: number | null;
   tiktok_url: string;
-  youtube_subscribers: number;
-  youtube_videos: number;
-  youtube_views: number;
-  youtube_engagement_rate: number;
-  youtube_avg_views: number;
+  youtube_subscribers: number | null;
+  youtube_videos: number | null;
+  youtube_views: number | null;
+  youtube_engagement_rate: number | null;
+  youtube_avg_views: number | null;
   youtube_url: string;
-  follower_count: number;
-  engagement_rate: number;
+  follower_count: number | null;
+  engagement_rate: number | null;
+  is_verified?: boolean;
+  is_business?: boolean;
   status: string;
+  searchapi_data?: SearchApiData;
 }
 
 export interface InfluencerItem {
@@ -249,6 +310,8 @@ export interface CreatorItem {
   added_at: string;
   client_decision_at: string | null;
   sent_to_client_at: string | null;
+  recommendation_score?: number | null;
+  selection_reason?: string;
   profile: InfluencerProfile;
 }
 
@@ -256,3 +319,38 @@ export interface CreatorsResponse {
   creators: CreatorItem[];
   total: number;
 }
+
+// ── Content review ───────────────────────────────────────────────────────
+
+export interface ClientContentLink {
+  content_id: string;
+  lead_id: string;
+  creator_id: string;
+  creator_name: string;
+  platform: string;
+  content_url: string;
+  caption: string | null;
+  status: string;
+  submitted_by: string | null;
+  submitted_at: string | null;
+  cm_approved_at: string | null;
+  cm_note: string | null;
+  cm_reviewed_by: string | null;
+  client_approved_at: string | null;
+  client_note: string | null;
+  client_reviewed_by?: string | null;
+  scheduled_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ClientContentLinksResponse {
+  lead_id: string;
+  creator_id: string;
+  creator_name: string;
+  brand_name: string;
+  content: ClientContentLink[];
+  total: number;
+}
+
+export type ClientReviewStatus = 'client_approved' | 'client_rejected';

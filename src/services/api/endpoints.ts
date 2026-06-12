@@ -38,4 +38,10 @@ export const ENDPOINTS = {
   INFLUENCERS: `${BASE}/client/influencers`,
   INFLUENCER_UPDATE: (creatorId: string) => `${BASE}/client/influencers/${creatorId}`,
   SELECTED_CREATORS: `${BASE}/client/creators`,
+
+  // ─── Content review ──────────────────────────────────────────
+  CLIENT_CONTENT_LINKS: (leadId: string, creatorId: string) =>
+    `${BASE}/content/${leadId}/${creatorId}/client-links`,
+  CLIENT_CONTENT_REVIEW: (leadId: string, contentId: string) =>
+    `${BASE}/content/${leadId}/links/${contentId}/client-review`,
 } as const;

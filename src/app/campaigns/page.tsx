@@ -3,6 +3,7 @@
 import { AuthGuard } from '@/components/AuthGuard';
 import { Navbar } from '@/components/Navbar';
 import { CampaignCard } from '@/components/CampaignCard';
+import { ContentReviewBoard } from '@/components/ContentReview';
 import { useCampaigns } from '@/hooks/useCampaigns';
 import styles from './campaigns.module.css';
 
@@ -53,6 +54,8 @@ function CampaignsList() {
           {campaigns.length} campaign{campaigns.length !== 1 ? 's' : ''}
         </p>
       </div>
+
+      <ContentReviewBoard />
 
       {campaigns.length === 0 ? (
         <div className={styles.emptyState}>
